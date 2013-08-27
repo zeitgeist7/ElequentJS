@@ -226,7 +226,7 @@ function between(someText, startString, endString) {
 // Test 1
 console.log("should give Spot");
 console.log(between("born 15/11/2003 (mother Spot): White Fang", "(mother ", ")"));
-// Test 2   
+// Test 2
 console.log("should give bah");
 console.log(between("bu ] boo [ bah ] gzz", "[ ", " ]"));
 
