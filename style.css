@@ -1,0 +1,13 @@
+#firstparent {
+	height : 400px;
+	width : 400px;
+	background-color: rgb(120, 12, 125);
+	position: relative;
+}
+
+#firstchild {
+	height : 100px;
+	width : 100px;
+	background-color: rgb(20, 200, 195);
+	position: absolute;
+}
