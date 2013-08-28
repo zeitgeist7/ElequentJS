@@ -208,7 +208,7 @@ function extractDate(paragraph) {
 		return s.parseInt();
 	}
 	var year = dateComponents[2];
-	var month = dateComponents[1] - 1;	// month use - indexing on Date objets
+	var month = dateComponents[1] - 1;	// month use 0-based indexing on Date objets
 	var day = dateComponents[0];
 
 	return new Date(year, month, day);
@@ -228,7 +228,7 @@ console.log("should give Spot");
 console.log(between("born 15/11/2003 (mother Spot): White Fang", "(mother ", ")"));
 // Test 2
 console.log("should give bah");
-console.log(between("bu ] boo [ bah ] gzz", "[ ", " ]"));
+console.log(`between("bu ] boo [ bah ] gzz", "[ ", " ]"));
 
 
 
