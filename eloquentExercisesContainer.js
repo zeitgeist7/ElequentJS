@@ -231,7 +231,20 @@ console.log("should give bah");
 console.log(`between("bu ] boo [ bah ] gzz", "[ ", " ]"));
 
 
-
+// Exercise 4.8
+function formatDate(date) {
+	function handleFormat (num) {
+		if (num < 10) 
+		{
+			return '0' + num;
+		};
+		return num;
+	}
+  return handleFormat(date.getDate()) + "/" + (handleFormat(date.getMonth() + 1)) +
+         "/" + handleFormat(date.getFullYear());
+}
+// Test
+console.log(formatDate(new Date()));
 
 
 
