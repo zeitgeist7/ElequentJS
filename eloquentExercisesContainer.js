@@ -266,6 +266,20 @@ function range(start, end) {
 // Test
 console.log(range(4));
 
+// Exercise 4.11
+function sum (numbers) {
+	var sum = 0;
+	for (var index = numbers.length - 1; index >= 0; index--) {
+		sum += numbers[index];
+	}
+	return sum;
+}
+// Test
+console.log(sum(range(1,10)));
+
+
+
+
 
 
 
