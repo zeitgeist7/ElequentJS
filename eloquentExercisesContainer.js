@@ -246,7 +246,25 @@ function formatDate(date) {
 // Test
 console.log(formatDate(new Date()));
 
+// Exercise 4.9
+// Depends on the data which is procided in the book, so...
 
+// Exercise 4.10
+function range(start, end) {
+	if (arguments.length < 2) 
+	{
+		end = start;
+		start = 0
+	}
+	var result = [];
+	for (var i = start; i <= end; i++) {
+
+		result[i-start] = i;
+	}
+	return result;
+}
+// Test
+console.log(range(4));
 
 
 
