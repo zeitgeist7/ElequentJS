@@ -285,7 +285,7 @@ function forEach(array, action) {
 
 function reduce(combine, base, array) {
 	forEach(array, function (element) {
-	base = combine(base, element);
+		base = combine(base, element);
 	});
 	return base;
 }
@@ -296,6 +296,8 @@ function countZeroes(numbers) {
 	}
 	return reduce(counter, 0, numbers);
 }
+
+// --------------------------------------------
 
 function count(array, testFunc) {
 	return reduce(function(total, element) {
@@ -313,7 +315,6 @@ function countZeroesBis(numbers) {
 // Tests
 print(countZeroes([1,0,0,1,0,0,0,3,3,3]));
 print(countZeroesBis([1,0,0,1,0,0,0,3,3,3]));
-
 
 
 
