@@ -3,39 +3,47 @@ function print(argument) {
 	console.log(argument);
 }
 
-function forEach (array, action) 
+function forEach (array, fn) 
 {
-	for (var index = array.length - 1; index >= 0; index--) {
-		action(array[index]);
+	for (var index = 0; index < array.length; index++) {
+		fn(array[index]);
 	};
 }
 
-function reduce (combine, base, array) {
-	forEach(array, function(element) {
-		base = combine(base, element);
+function reduce (fn, base, array) 
+{
+	forEach(array, function (element) {
+		base = fn(base, element);
 	});
 	return base;
 }
 
-function equals (reference) {
-	return function (value) {
-		return (reference === value);
+function countZeroes1 (numbers) 
+{
+	function counter (count, element) {
+		return count + (element == 0 ? 1 : 0);
 	}
+
+	return reduce(counter, 0, numbers);
 }
 
-function count (test, array) 
+
+function count (array, test) 
 {
-	return reduce(function(total, element) {
-		total = total + (test(element))
+	return reduce(function(base, element) {
+		return base + (test(element) ? 1 : 0)
 	}, 0, array);
 }
 
-function countZeroes(numbers) 
+function isEqual (x) 
 {
-	return count(equals(0), numbers);
+	return function (element) { return x === element; };
 }
 
-var someNumbers = [1,2,0,2,3,3,4,5,0,0,0,0,0,0,0,2,0,0,9];
-print(countZeroes(someNumbers));
+function countZeroes (numbers) 
+{
+	return count(numbers, isEqual(0));
+}
 
-// console.log('End of chapter 4...\n\n');
+
+print(countZeroes1([1,2,3,0,0,0,0,5,6,7,0]));

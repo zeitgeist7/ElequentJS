@@ -278,46 +278,55 @@ function sum (numbers) {
 console.log(sum(range(1,10)));
 
 // Exercise 6.1
-function forEach(array, action) {
-	for (var i = 0; i < array.length; i++)
-		action(array[i]);
+function forEach (array, fn) 
+{
+	for (var index = 0; index < array.length; index++) {
+		fn(array[index]);
+	};
 }
 
-function reduce(combine, base, array) {
+function reduce (fn, base, array) 
+{
 	forEach(array, function (element) {
-		base = combine(base, element);
+		base = fn(base, element);
 	});
 	return base;
 }
 
-function countZeroes(numbers) {
-	function counter(total, element) {
-		return total + (element === 0 ? 1 : 0);
+function countZeroes1 (numbers) 
+{
+	function counter (count, element) {
+		return count + (element == 0 ? 1 : 0);
 	}
+
 	return reduce(counter, 0, numbers);
 }
 
-// --------------------------------------------
 
-function count(array, testFunc) {
-	return reduce(function(total, element) {
-		return total += testFunc(element);
+function count (array, test) 
+{
+	return reduce(function(base, element) {
+		return base + (test(element) ? 1 : 0)
 	}, 0, array);
 }
 
-function equals(element) {
-	return(element === 0 ? 1 : 0);
+function isEqual (x) 
+{
+	return function (element) { return x === element; };
 }
 
-function countZeroesBis(numbers) {
-	return count(numbers, equals);
+function countZeroes (numbers) 
+{
+	return count(numbers, isEqual(0));
 }
+
 // Tests
+print(countZeroes1([1,0,0,1,0,0,0,3,3,3]));
 print(countZeroes([1,0,0,1,0,0,0,3,3,3]));
-print(countZeroesBis([1,0,0,1,0,0,0,3,3,3]));
 
+// Exercise 6.2
 
-
+// Test
 
 
 
