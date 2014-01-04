@@ -20,7 +20,6 @@ function processParagraph (paragraph)
 	while (paragraph.charAt(headingWeight) === '%') {
 		headingWeight++;
 	}
-	
 	var paragraphDefinition =	{
 									'content'	: paragraph.substr(headingWeight),
 									'type' 		: (headingWeight == 0) ? 'p' : 'h' + headingWeight
@@ -28,12 +27,55 @@ function processParagraph (paragraph)
 		
 	return paragraphDefinition;
 }
+
 // Test
-print(processParagraph("This is a day that I have been looking forward to for two and a half years."))
-print(processParagraph("%This is a day that I have been looking forward to for two and a half years."))
-print(processParagraph("%%%This is a day that I have been looking forward to for two and a half years."))
 
+/*
+Which can be decomposed into:
 
+If the paragraph starts with an asterisk, take off the emphasised part and store it.
+If the paragraph starts with an opening brace, take off the footnote and store it.
+Otherwise, take off the part until the first emphasised part or footnote, or until the end of the string, and store it as normal text.
+If there is anything left in the paragraph, start at 1 again.
+*/
+
+// Exercise 6.3
+function splitParagraph (paragraph) 
+{
+	function grabEmphasisOrFootnote (endDelimiter) 
+	{
+		var endIndex = paragraph.indexOf(endDelimiter, 1); 	// from 1 since this might be a problem for '*'
+		if (endIndex === -1) {
+			print("'" + endDelimiter + "'" + " not found");
+		};
+		var content = paragraph.slice(1, endIndex);
+		paragraph = paragraph.slice(endIndex + 1)
+
+		return content;
+	}
+
+	function indexOfStartDelimiter (delimiter) 
+	{
+		
+	}
+
+	var fragments = [];
+
+	while(paragraph != '') {
+		if (paragraph.charAt(0) === '*') {
+
+		}
+		else if (paragraph.charAt(0) === '{'){
+
+		}
+		else {
+
+		}
+	}
+	return null;
+}
+
+// Test
 
 
 
