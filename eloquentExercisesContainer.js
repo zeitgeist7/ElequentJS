@@ -325,6 +325,26 @@ print(countZeroes1([1,0,0,1,0,0,0,3,3,3]));
 print(countZeroes([1,0,0,1,0,0,0,3,3,3]));
 
 // Exercise 6.2
+function processParagraph (paragraph)
+{
+	var headingWeight = 0;
+	while (paragraph.charAt(headingWeight) === '%') {
+		headingWeight++;
+	}
+	
+	var paragraphDefinition =	{
+									'content'	: paragraph.substr(headingWeight),
+									'type' 		: (headingWeight == 0) ? 'p' : 'h' + headingWeight
+								};	// Only 2 cases as stipulated in the book
+		
+	return paragraphDefinition;
+}
+// Test
+print(processParagraph("This is a day that I have been looking forward to for two and a half years."))
+print(processParagraph("%This is a day that I have been looking forward to for two and a half years."))
+print(processParagraph("%%%This is a day that I have been looking forward to for two and a half years."))
+
+// Exercise 6.3
 
 // Test
 
