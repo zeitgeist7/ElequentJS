@@ -64,7 +64,7 @@ function splitParagraph (paragraph)
 			print("'" + endDelimiter + "'" + " not found");
 		};
 		var content = paragraph.slice(1, endIndex);
-		paragraph = paragraph.slice(endIndex + 1)
+		paragraph = paragraph.slice(endIndex + 1);
 
 		return content;
 	}
@@ -72,7 +72,7 @@ function splitParagraph (paragraph)
 	function indexOfStartDelimiter (delimiter) 
 	{
 		var index = paragraph.indexOf(delimiter);
-		return index === -1 ? paragraph.length - 1 : index;
+		return index === -1 ? paragraph.length : index;
 	}
 
 	function grabTextBeforeSpecialTags () 
@@ -106,14 +106,4 @@ var recluse = "% The Book of Programming\n\n%% The Two Aspects\n\nBelow the surf
 var paragraphs = recluse.split("\n\n");
 print(splitParagraph('0123*emphasisd*therest'));
 print('0123*emphasisd*therest'.length)
-
-
-
-
-
-
-
-
-
-
 
