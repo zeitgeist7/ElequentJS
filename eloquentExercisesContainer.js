@@ -409,6 +409,29 @@ print('0123*emphasisd*therest'.length)
 
 // Exercise 6.4
 
+var linkObject = { name: "a", attributes: {href: "http://www.gokgs.com/"}, content: ["Play Go!"] };
+
+function tag (name, content, attributes) {
+	return {name: name, content: content, attributes: attributes};
+}
+
+function link (target, text) {
+	return tag('a', [text], { href: target });
+}
+
+function htmlDoc (title, bodyContent) {
+	return tag("html", [tag("head", [tag("title", [title])]), tag("body", bodyContent)], {lang: "en", } );
+}
+
+function image (location) {
+	return tag("img", [], { src: location });
+}
+
+// Test
+print(image("www.google.com/png"));
+
+// Exercise 6.5
+
 // Test
 
 
