@@ -354,7 +354,6 @@ print(processParagraph("%This is a day that I have been looking forward to for t
 print(processParagraph("%%%This is a day that I have been looking forward to for two and a half years."))
 
 // Exercise 6.3
-
 function splitParagraph (paragraph) 
 {
 	function grabEmphasisOrFootnote (endDelimiter) 
@@ -408,7 +407,6 @@ print(splitParagraph('0123*emphasisd*therest'));
 print('0123*emphasisd*therest'.length)
 
 // Exercise 6.4
-
 var linkObject = { name: "a", attributes: {href: "http://www.gokgs.com/"}, content: ["Play Go!"] };
 
 function tag (name, content, attributes) {
@@ -431,6 +429,32 @@ function image (location) {
 print(image("www.google.com/png"));
 
 // Exercise 6.5
+function footnote(number) {
+  return tag("sup", [link("#footnote" + number,
+                          String(number))]);
+}
+
+function renderFragment (fragment) {
+	if (fragment["type"] === "em") {
+		return tag("em", fragment["content"]);
+	} 
+	else if (fragment["type"] === "footnote") {
+		return footnote(fragment["number"]);
+	}
+	else {
+		return fragment["content"];
+	}
+}
+
+function renderParagraph (paragraph) {
+	// content of paragraph is added in some other methods in the book, not shown here
+	return tag(paragraph["type"], map(renderFragment, paragraph["content"]));
+}
+
+// Test
+// NO TESTS HERE!
+
+// Exercise 6.x
 
 // Test
 
