@@ -293,6 +293,15 @@ function reduce (fn, base, array)
 	return base;
 }
 
+function map (fn, array)
+{
+	var result = [];
+	forEach(array, function (element) {
+		result.push(fn(element))
+	});
+	return result;
+}
+
 function countZeroes1 (numbers) 
 {
 	function counter (count, element) {
