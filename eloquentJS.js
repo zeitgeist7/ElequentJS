@@ -1,22 +1,4 @@
-function Rabbit (adjective) {
-	this.adjective = adjective;
-	this.speak = function (line) {
-		print("The " + this.adjective + " rabbit says " + line + ".");
-	}
-}
 
-function forEachIn (object, action) {
-	for(var property in object) {
-		if(object.hasOwnProperty(property)) {
-			action(property, object[property]);
-		}
-	}
-}
-
-var someObject = { name: "Rajiv Jhoomuck", gender: "male", attitude: "badtameez" };
-forEachIn(someObject, function (propertyName, propertyValue) {
-	print(propertyName + ": " + propertyValue);
-})
 
 /*
 	***** TOOLBOX *****
@@ -71,4 +53,12 @@ function partial(func) {
 	return function(){
 		return func.apply(null, fixedArgs.concat(asArray(arguments)));
 	};
+}
+
+function forEachIn (object, action) {
+	for(var property in object) {
+		if(object.hasOwnProperty(property)) {
+			action(property, object[property]);
+		}
+	}
 }
