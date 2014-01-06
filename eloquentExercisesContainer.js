@@ -454,10 +454,47 @@ function renderParagraph (paragraph) {
 // Test
 // NO TESTS HERE!
 
-// Exercise 6.x
+// Chapter 8
+var thePlan =[
+	"############################",
+	"#      #    #      o      ##",
+	"#                          #",
+	"#          #####           #",
+	"##         #   #    ##     #",
+	"###           ##     #     #",
+	"#           ###      #     #",
+	"#   ####                   #",
+	"#   ##       o             #",
+	"# o  #         o       ### #",
+	"#    #                     #",
+	"############################"
+   ];
+
+// Exercise 8.1
+function Point (x, y) {
+	this.x = x;
+	this.y = y;
+};
+
+Point.prototype.add = function(point) {
+	return new Point(this.x + point.x, this.y + point.y);
+};
+
+Point.prototype.isEqualTo = function(point) {
+	return (this.x.toFixed(1) === point.x.toFixed(1)) && (this.y.toFixed(1) === point.y.toFixed(1));
+}
 
 // Test
 
-
-
-
+// Constructor
+var p1 = new Point(1, 34.2);
+print("The coordinates of p1 is ( " + p1.x + ", " + p1.y + " )");	// Should be ( 1, 34.2 ) unless some connard changes it!
+// .add()
+var p2 = new Point(3, -30);
+var p1_plus_p2 = p1.add(p2);
+print("The coordinates of p1_plus_p2 is ( " + p1_plus_p2.x + ", " + p1_plus_p2.y + " )");	// Should be ( 4.0, 4.2 ) unless some connard changes it!
+// isEqualTo()
+print(p1_plus_p2.isEqualTo(new Point(4.0, 4.2)))
+// Getting and setting the coordinates
+p1.x = p1.y = 7.0;
+print("The coordinates of p1 is ( " + p1.x + ", " + p1.y + " )");	// Should be ( 7, 7 ) unless some connard changes it!
