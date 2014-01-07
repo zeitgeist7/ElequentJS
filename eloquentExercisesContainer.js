@@ -489,7 +489,7 @@ Point.prototype.isEqualTo = function(point) {
 // Constructor
 var p1 = new Point(1, 34.2);
 print("The coordinates of p1 is ( " + p1.x + ", " + p1.y + " )");	// Should be ( 1, 34.2 ) unless some connard changes it!
-// .add()
+// .add() 
 var p2 = new Point(3, -30);
 var p1_plus_p2 = p1.add(p2);
 print("The coordinates of p1_plus_p2 is ( " + p1_plus_p2.x + ", " + p1_plus_p2.y + " )");	// Should be ( 4.0, 4.2 ) unless some connard changes it!
@@ -498,3 +498,44 @@ print(p1_plus_p2.isEqualTo(new Point(4.0, 4.2)))
 // Getting and setting the coordinates
 p1.x = p1.y = 7.0;
 print("The coordinates of p1 is ( " + p1.x + ", " + p1.y + " )");	// Should be ( 7, 7 ) unless some connard changes it!
+
+// Exercise 8.2
+function Grid(width, height) {
+	this.width = width;
+	this.height = height;
+	this.cells = new Array(width * height);
+}
+
+Grid.prototype.valueAt = function(point) {
+	return this.cells[point.y * this.width + point.x];
+};
+
+Grid.prototype.setValueAt = function(point, value) {
+	this.cells[point.y * this.width + point.x] = value;
+};
+
+Grid.prototype.isInside = function(point) {
+	return point.x >= 0 && point.y >= 0 &&
+	point.x < this.width && point.y < this.height;
+};
+
+Grid.prototype.moveValue = function(from, to) {
+	this.setValueAt(to, this.valueAt(from));
+	this.setValueAt(from, undefined);
+};
+
+Grid.prototype.each = function(action) {
+	for (var index = 0; index < this.length; index++) {
+		var x = index % 3;
+		var y = Math.floor(index / 3);
+		var point = new Point(x, y);
+		action(point, this.valueAt(point));
+	}; 
+};
+
+// Test
+// NO TESTS FOR THIS ONE. YET!
+
+// Exercise 8.3
+
+// Test
