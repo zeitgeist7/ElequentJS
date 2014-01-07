@@ -114,7 +114,7 @@ var thePlan =[
 "############################"
 ];
 
-// Exercise 8.1
+// Point prototype
 function Point (x, y) {
 	this.x = x;
 	this.y = y;
@@ -132,7 +132,7 @@ Point.prototype.description = function() {
 	return "Point: ( " + this.x + ", " + this.y + " )";
 };
 
-// Exercise 8.2
+// Grid prototype
 function Grid(width, height) {
 	this.width = width;
 	this.height = height;
@@ -158,25 +158,74 @@ Grid.prototype.moveValue = function(from, to) {
 };
 
 Grid.prototype.each = function(action) {
-	for (var index = 0; index < this.cells.length; index++) {
-		var x = index % 3;
-		var y = Math.floor(index / 3);
-		var point = new Point(x, y);
-		action(point, this.valueAt(point));
-	}; 
+	for (var y = 0; y < this.height; y++) {
+		for (var x = 0; x < this.width; x++) {
+			var point = new Point(x, y);
+			action(point, this.valueAt(point));
+		}
+	}
+};
+
+// Bug prototype
+function StupidBug() {};
+StupidBug.prototype.act = function(surroundings) {
+	return {type: "move", direction: "s"};
+};
+
+// Wall object
+var wall = {};
+
+// Helpers for the Terrarium game
+function elementFromCharacter(character) {
+	if (character == " ")
+		return undefined;
+	else if (character == "#")
+		return wall;
+	else if (character == "o")
+		return new StupidBug();
+}
+
+wall.character = "#";
+StupidBug.prototype.character = "o";
+
+function characterFromElement (element) {
+	if (element == undefined) {
+		return " ";
+	} 
+	else {
+		return element.character;
+	};
+}
+
+// Terrarium prototyope
+function Terrarium(plan) {
+	var grid = new Grid(plan[0].length, plan.length);
+	for (var y = 0; y < plan.length; y++) {
+		var line = plan[y];
+		for (var x = 0; x < line.length; x++) {
+			grid.setValueAt(new Point(x, y), elementFromCharacter(line.charAt(x)));
+		}
+	}
+	this.grid = grid;
+}
+
+Terrarium.prototype.toString = function() {
+	var result = "";
+	var endOfLine = this.grid.width - 1;
+	this.grid.each(function (point, value) {
+		result += characterFromElement(value);
+		if (point.x == endOfLine) {
+			result += "\n";
+		};
+	});
+	return result;
 };
 
 // Test
-var directions = new Dictionary(
-  {"n":  new Point( 0, -1),
-   "ne": new Point( 1, -1),
-   "e":  new Point( 1,  0),
-   "se": new Point( 1,  1),
-   "s":  new Point( 0,  1),
-   "sw": new Point(-1,  1),
-   "w":  new Point(-1,  0),
-   "nw": new Point(-1, -1)});
+var terrarium  = new Terrarium(thePlan);
+// print(thePlan);
+var desc = terrarium.toString();
+print(desc);
 
-print(new Point(4, 4).add(directions.lookup("se")));
-
+// Test
 

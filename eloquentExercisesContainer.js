@@ -543,4 +543,24 @@ testGrid.each(function(point, value) {
 
 // Exercise 8.3
 
+Terrarium.prototype.toString = function() {
+	var result = "";
+	var endOfLine = this.grid.width - 1;
+	this.grid.each(function (point, value) {
+		result += characterFromElement(value);
+		if (point.x == endOfLine) {
+			result += "\n";
+		};
+	});
+	return result;
+};
+
+// Test
+var terrarium  = new Terrarium(thePlan);
+// print(thePlan);
+var desc = terrarium.toString();
+print(desc);
+
+// Exercise 8.4
+
 // Test
