@@ -534,7 +534,12 @@ Grid.prototype.each = function(action) {
 };
 
 // Test
-// NO TESTS FOR THIS ONE. YET!
+var testGrid = new Grid(3, 2);
+testGrid.setValueAt(new Point(1, 0), "#");
+testGrid.setValueAt(new Point(1, 1), "o");
+testGrid.each(function(point, value) {
+	print(point.x + ',' + point.y + ": " + value);
+});
 
 // Exercise 8.3
 

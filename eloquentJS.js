@@ -57,7 +57,7 @@ Grid.prototype.moveValue = function(from, to) {
 };
 
 Grid.prototype.each = function(action) {
-	for (var index = 0; index < this.length; index++) {
+	for (var index = 0; index < this.cells.length; index++) {
 		var x = index % 3;
 		var y = Math.floor(index / 3);
 		var point = new Point(x, y);
@@ -66,13 +66,18 @@ Grid.prototype.each = function(action) {
 };
 
 // Test
-
+var testGrid = new Grid(3, 2);
+testGrid.setValueAt(new Point(1, 0), "#");
+testGrid.setValueAt(new Point(1, 1), "o");
+testGrid.each(function(point, value) {
+	print(point.x + ',' + point.y + ": " + value);
+});
 
 /*
 	***** TOOLBOX *****
 	*/
-	function print(argument) {
-		console.log(argument);
+	function print() {
+		console.log.apply(null, arguments);
 	}
 
 	function forEach (array, fn) 
