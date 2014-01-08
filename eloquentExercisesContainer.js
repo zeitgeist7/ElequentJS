@@ -562,5 +562,20 @@ var desc = terrarium.toString();
 print(desc);
 
 // Exercise 8.4
+function method (object, method) {
+	return function() {
+		return object[method].apply(object, arguments);
+	}
+}
+
+// Test
+var testArray = [];
+var pushTest = method(testArray, 'push')
+pushTest("asd");
+pushTest("asd");
+pushTest("dsa");
+print(testArray);
+
+// Exercise 8.5
 
 // Test

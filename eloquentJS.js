@@ -227,5 +227,24 @@ var terrarium  = new Terrarium(thePlan);
 var desc = terrarium.toString();
 print(desc);
 
-// Test
 
+// function bind (func, object) {
+// 	return function() {
+// 		return func.apply(object, arguments);
+// 	}
+// }
+
+// Exercise 8.4
+function method (object, method) {
+	return function() {
+		return object[method].apply(object, arguments);
+	}
+}
+
+// Test
+var testArray = [];
+var pushTest = method(testArray, 'push')
+pushTest("asd");
+pushTest("asd");
+pushTest("dsa");
+print(testArray);
